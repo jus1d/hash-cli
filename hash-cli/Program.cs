@@ -20,9 +20,9 @@ namespace hash_cli
                 }
                 else
                 {
-                    string hash_type = args[0];
+                    string hashType = args[0];
 
-                    switch (hash_type)
+                    switch (hashType)
                     {
                         case "sha256":
                             string rawData = args[1];
