@@ -1,1 +1,1 @@
-# hash-cli
+# hash-cli-tool
