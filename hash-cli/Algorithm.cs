@@ -6,5 +6,9 @@ public enum Algorithm
     Sha256,
     Sha384,
     Sha512,
-    Md5
+    Md5,
+    Keccak224,
+    Keccak256,
+    Keccak384,
+    Keccak512
 }

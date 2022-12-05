@@ -1,4 +1,5 @@
-﻿using static hash_cli.Algorithm;
+﻿using hash_cli.Hash;
+using static hash_cli.Algorithm;
 using static hash_cli.Generator;
 
 namespace hash_cli
@@ -8,10 +9,14 @@ namespace hash_cli
         public const ConsoleColor FlagColor = ConsoleColor.DarkGray;
         public const ConsoleColor ErrorColor = ConsoleColor.DarkRed;
         public const ConsoleColor SuccessColor = ConsoleColor.Green;
-        // public const ConsoleColor DefaultColor = ConsoleColor.White;
         
         
         static void Main(string[] args)
+        {
+            Start(args);
+        }
+
+        private static void Start(string[] args)
         {
             try
             {
@@ -170,6 +175,62 @@ namespace hash_cli
                             {
                                 {
                                     string hash = HashCompute(Md5, rawData, false);
+                                    
+                                    LogHash(rawData, hashType, hash);
+                                }
+                            }
+                            break;
+                        case "keccak224":
+                            if (rawData == "--file" || rawData == "-f")
+                            {
+                                Console.WriteLine("soon...");
+                            }
+                            else
+                            {
+                                {
+                                    string hash = HashCompute(Keccak224, rawData, false);
+
+                                    LogHash(rawData, hashType, hash);
+                                }
+                            }
+                            break;
+                        case "keccak256":
+                            if (rawData == "--file" || rawData == "-f")
+                            {
+                                Console.WriteLine("soon...");
+                            }
+                            else
+                            {
+                                {
+                                    string hash = HashCompute(Keccak256, rawData, false);
+                                    
+                                    LogHash(rawData, hashType, hash);
+                                }
+                            }
+                            break;
+                        case "keccak384":
+                            if (rawData == "--file" || rawData == "-f")
+                            {
+                                Console.WriteLine("soon...");
+                            }
+                            else
+                            {
+                                {
+                                    string hash = HashCompute(Keccak384, rawData, false);
+                                    
+                                    LogHash(rawData, hashType, hash);
+                                }
+                            }
+                            break;
+                        case "keccak512":
+                            if (rawData == "--file" || rawData == "-f")
+                            {
+                                Console.WriteLine("soon...");
+                            }
+                            else
+                            {
+                                {
+                                    string hash = HashCompute(Keccak512, rawData, false);
                                     
                                     LogHash(rawData, hashType, hash);
                                 }

@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
+using hash_cli.Hash;
 
 namespace hash_cli;
 
@@ -45,6 +46,18 @@ public class Generator
                 
                 case Algorithm.Md5:
                     return Md5(rawData);
+                
+                case Algorithm.Keccak224:
+                    return KeccakHash.ComputeHash(Algorithm.Keccak224, rawData);
+                
+                case Algorithm.Keccak256:
+                    return KeccakHash.ComputeHash(Algorithm.Keccak256, rawData);
+                
+                case Algorithm.Keccak384:
+                    return KeccakHash.ComputeHash(Algorithm.Keccak384, rawData);
+                
+                case Algorithm.Keccak512:
+                    return KeccakHash.ComputeHash(Algorithm.Keccak512, rawData);
             }
         }
 
@@ -105,6 +118,26 @@ public class Generator
             return Convert.ToHexString(hashBytes).ToLower();
         }
     }
+
+    static string Keccak224(string rawData)
+    {
+        return KeccakHash.ComputeHash(Algorithm.Keccak224, rawData);
+    }
+    
+    static string Keccak256(string rawData)
+    {
+        return KeccakHash.ComputeHash(Algorithm.Keccak256, rawData);
+    }
+    
+    static string Keccak384(string rawData)
+    {
+        return KeccakHash.ComputeHash(Algorithm.Keccak384, rawData);
+    }
+    
+    static string Keccak512(string rawData)
+    {
+        return KeccakHash.ComputeHash(Algorithm.Keccak512, rawData);
+    }
         
     static string FileSha1(string path)
     {
@@ -155,4 +188,6 @@ public class Generator
             return BitConverter.ToString(checksum).Replace("-", String.Empty).ToLower(); 
         }
     }
+    
+    
 }
