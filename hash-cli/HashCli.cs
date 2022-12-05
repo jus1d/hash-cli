@@ -1,12 +1,16 @@
-﻿using System.Security.Cryptography;
-using System.Text;
-using static hash_cli.Algorithm;
+﻿using static hash_cli.Algorithm;
 using static hash_cli.Generator;
 
 namespace hash_cli
 {
     class HashCli
     {
+        public const ConsoleColor FlagColor = ConsoleColor.DarkGray;
+        public const ConsoleColor ErrorColor = ConsoleColor.DarkRed;
+        public const ConsoleColor SuccessColor = ConsoleColor.Green;
+        // public const ConsoleColor DefaultColor = ConsoleColor.White;
+        
+        
         static void Main(string[] args)
         {
             try
@@ -16,10 +20,11 @@ namespace hash_cli
                     string parameter = args[0].ToLower();
                     if (parameter == "--help" || parameter == "-h")
                     {
-                        Console.WriteLine("\nUsage: hash-cli [ hash-algorithm ] [ raw-data ]\n" +
-                                          "\n  or\n" +
-                                          "\nUsage for hashing files: hash-cli [ hash-algorithm ] --file [ file-name ]\n" +
-                                          "\nFile-name parameter may be clear => will opens a window for selecting a file\n");
+                        
+                        WriteColored("\nUsage: hash-cli [ hash-algorithm ] [ raw-data ]\n", FlagColor,
+                                     "\n  or\n",
+                                     "\nUsage for hashing files: hash-cli [ hash-algorithm ] ", FlagColor,  "--file", " [ file-name ]\n" +
+                                     "\nFile-name parameter may be clear => will opens a window for selecting a file\n");
                     }
                     else if (parameter == "--test" || parameter == "-t")
                     {
@@ -49,9 +54,9 @@ namespace hash_cli
                                 }
                                 catch (IndexOutOfRangeException e)
                                 {
-                                    WriteColor("Type path to file after ");
-                                    WriteColor("--flag", ConsoleColor.DarkGray);
-                                    WriteColor(" flag");
+                                    
+                                    
+                                    WriteColored("Type path to file after ", FlagColor, "--file", " flag");
                                 }
                             }
                             else
@@ -77,9 +82,7 @@ namespace hash_cli
                                 }
                                 catch (IndexOutOfRangeException e)
                                 {
-                                    WriteColor("Type path to file after ");
-                                    WriteColor("--flag", ConsoleColor.DarkGray);
-                                    WriteColor(" flag");
+                                    WriteColored("Type path to file after ", FlagColor, "--file", " flag");
                                 }
                             }
                             else
@@ -106,9 +109,7 @@ namespace hash_cli
                                 }
                                 catch (IndexOutOfRangeException e)
                                 {
-                                    WriteColor("Type path to file after ");
-                                    WriteColor("--flag", ConsoleColor.DarkGray);
-                                    WriteColor(" flag");
+                                    WriteColored("Type path to file after ", FlagColor, "--file", " flag");
                                 }
                             }
                             else
@@ -135,9 +136,7 @@ namespace hash_cli
                                 }
                                 catch (IndexOutOfRangeException e)
                                 {
-                                    WriteColor("Type path to file after ");
-                                    WriteColor("--flag", ConsoleColor.DarkGray);
-                                    WriteColor(" flag");
+                                    WriteColored("Type path to file after ", FlagColor, "--file", " flag");
                                 }
                             }
                             else
@@ -164,9 +163,7 @@ namespace hash_cli
                                 }
                                 catch (IndexOutOfRangeException e)
                                 {
-                                    WriteColor("Type path to file after ");
-                                    WriteColor("--flag", ConsoleColor.DarkGray);
-                                    WriteColor(" flag");
+                                    WriteColored("Type path to file after ", FlagColor, "--file", " flag");
                                 }
                             }
                             else
@@ -183,32 +180,31 @@ namespace hash_cli
             }
             catch (Exception e)
             {
-                WriteColor("Use ");
-                WriteColor("--help");
-                WriteColor(" or ");
-                WriteColor("-h");
-                WriteLineColor(" flags, to see usage list");
+                WriteColored("Use ", FlagColor, "--flag", " or ", FlagColor, "-h", " flags, to see usage list");
             }
         }
 
         static void LogHash(string rawData, string hashType, string hash)
         {
-            WriteColor($"{rawData}:{hashType} -> ", ConsoleColor.DarkGray);
-            WriteLineColor(hash);
+            WriteColored(FlagColor, $"{rawData}:{hashType} -> ", hash);
         }
 
-        public static void WriteColor(string text, ConsoleColor color = ConsoleColor.White)
+        public static void WriteColored(params object[] list)
         {
-            Console.ForegroundColor = color;
-            Console.Write(text);
-            Console.ResetColor();
-        }
-        
-        public static void WriteLineColor(string text, ConsoleColor color = ConsoleColor.White)
-        {
-            Console.ForegroundColor = color;
-            Console.WriteLine(text);
-            Console.ResetColor();
+            foreach (var obj in list)
+            {
+                if (obj is ConsoleColor)
+                {
+                    Console.ForegroundColor = (ConsoleColor)obj;
+                }
+                else if (obj is string)
+                {
+                    Console.Write(obj);
+                    Console.ResetColor();
+                }
+            }
+            
+            Console.WriteLine();
         }
     }
 }

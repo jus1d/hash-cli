@@ -29,29 +29,24 @@ public class Tests
             if (result)
             {
                 passed++;
-
-                WriteColor($"\n    {algorithms[i]}:");
-                WriteLineColor(" [✓] Test passed", ConsoleColor.Green);
                 
+                WriteColored($"\n    {algorithms[i]}:", SuccessColor, " [✓] Test passed");
             }
             else
             {
                 failed++;
                 
-                WriteColor($"\n    {algorithms[i]}:");
-                WriteLineColor(" [×] Test failed", ConsoleColor.Red);
+                WriteColored($"\n    {algorithms[i]}:", ErrorColor, " [×] Test failed");
             }
         }
 
         if (failed == 0)
         {
-            WriteColor("\nAll test successfully passed:");
-            WriteLineColor($" [{passed}/{total}]", ConsoleColor.Green);
+            WriteColored("\nAll test successfully passed:", SuccessColor, $" [{passed}/{total}]");
         }
         else
         {
-            WriteColor("\nSome tests are failed:");
-            WriteLineColor($" [{failed}/{total}]", ConsoleColor.Red);
+            WriteColored("\nSome tests are failed:", ErrorColor, $" [{failed}/{total}]");
         }
         
     }
