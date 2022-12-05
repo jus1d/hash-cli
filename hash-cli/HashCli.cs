@@ -39,6 +39,33 @@ namespace hash_cli
 
                     switch (hashType)
                     {
+                        case "sha1":
+                            
+                            if (rawData == "--file" || rawData == "-f")
+                            {
+                                try
+                                {
+                                    string path = args[2];
+
+                                    string hash = HashCompute(Sha1, path, true);
+                                    
+                                    LogHash($"file:{path}", hashType, hash);
+                                }
+                                catch (IndexOutOfRangeException e)
+                                {
+                                    WriteColored("Type path to file after ", FlagColor, "--file", " flag");
+                                }
+                            }
+                            else
+                            {
+                                {
+                                    string hash = HashCompute(Sha1, rawData, false);
+                                    
+                                    LogHash(rawData, hashType, hash);
+                                }
+                            }
+                            break;
+                        
                         case "sha256":
 
                             if (rawData == "--file" || rawData == "-f")
@@ -66,60 +93,6 @@ namespace hash_cli
                                 LogHash(rawData, hashType, hash);
                             }
                             
-                            break;
-                        
-                        case "md5":
-
-                            if (rawData == "--file" || rawData == "-f")
-                            {
-                                try
-                                {
-                                    string path = args[2];
-
-                                    string hash = HashCompute(Md5, path, true);
-                                    
-                                    LogHash($"file:{path}", hashType, hash);
-                                }
-                                catch (IndexOutOfRangeException e)
-                                {
-                                    WriteColored("Type path to file after ", FlagColor, "--file", " flag");
-                                }
-                            }
-                            else
-                            {
-                                {
-                                    string hash = HashCompute(Md5, rawData, false);
-                                    
-                                    LogHash(rawData, hashType, hash);
-                                }
-                            }
-                            break;
-                        
-                        case "sha1":
-                            
-                            if (rawData == "--file" || rawData == "-f")
-                            {
-                                try
-                                {
-                                    string path = args[2];
-
-                                    string hash = HashCompute(Sha1, path, true);
-                                    
-                                    LogHash($"file:{path}", hashType, hash);
-                                }
-                                catch (IndexOutOfRangeException e)
-                                {
-                                    WriteColored("Type path to file after ", FlagColor, "--file", " flag");
-                                }
-                            }
-                            else
-                            {
-                                {
-                                    string hash = HashCompute(Sha1, rawData, false);
-                                    
-                                    LogHash(rawData, hashType, hash);
-                                }
-                            }
                             break;
                         
                         case "sha384":
@@ -170,6 +143,33 @@ namespace hash_cli
                             {
                                 {
                                     string hash = HashCompute(Sha512, rawData, false);
+                                    
+                                    LogHash(rawData, hashType, hash);
+                                }
+                            }
+                            break;
+                        
+                        case "md5":
+
+                            if (rawData == "--file" || rawData == "-f")
+                            {
+                                try
+                                {
+                                    string path = args[2];
+
+                                    string hash = HashCompute(Md5, path, true);
+                                    
+                                    LogHash($"file:{path}", hashType, hash);
+                                }
+                                catch (IndexOutOfRangeException e)
+                                {
+                                    WriteColored("Type path to file after ", FlagColor, "--file", " flag");
+                                }
+                            }
+                            else
+                            {
+                                {
+                                    string hash = HashCompute(Md5, rawData, false);
                                     
                                     LogHash(rawData, hashType, hash);
                                 }
