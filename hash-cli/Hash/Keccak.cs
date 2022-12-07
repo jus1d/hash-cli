@@ -224,7 +224,7 @@ public class Keccak
         return bVal;
     }
 
-    static List<Byte> StringToByteList(String str)
+    static List<Byte> StringToByteList(string str)
     {
         List<Byte> ret = new List<byte>(str.Length);
 

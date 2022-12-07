@@ -1,4 +1,5 @@
-﻿using hash_cli.Hash;
+﻿using System.Text;
+using hash_cli.Hash;
 using static hash_cli.Algorithm;
 using static hash_cli.Generator;
 
