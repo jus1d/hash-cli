@@ -118,26 +118,6 @@ public class Generator
             return Convert.ToHexString(hashBytes).ToLower();
         }
     }
-
-    static string Keccak224(string rawData)
-    {
-        return Keccak.ComputeHash(Algorithm.Keccak224, rawData);
-    }
-    
-    static string Keccak256(string rawData)
-    {
-        return Keccak.ComputeHash(Algorithm.Keccak256, rawData);
-    }
-    
-    static string Keccak384(string rawData)
-    {
-        return Keccak.ComputeHash(Algorithm.Keccak384, rawData);
-    }
-    
-    static string Keccak512(string rawData)
-    {
-        return Keccak.ComputeHash(Algorithm.Keccak512, rawData);
-    }
         
     static string FileSha1(string path)
     {
