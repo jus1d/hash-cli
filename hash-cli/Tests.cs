@@ -1,6 +1,5 @@
-﻿using static hash_cli.Generator;
+﻿using hash_cli.Hash;
 using static hash_cli.Algorithm;
-using static hash_cli.HashCli;
 
 namespace hash_cli;
 
@@ -35,34 +34,31 @@ public class Tests
             {
                 passed++;
                 
-                WriteColored($"\n    {algorithms[i]}:", SuccessColor, " [✓] Test passed");
+                HashProgram.WriteColored($"\n    {algorithms[i]}:", HashProgram.SuccessColor, " [✓] Test passed");
             }
             else
             {
                 failed++;
                 
-                WriteColored($"\n    {algorithms[i]}:", ErrorColor, " [×] Test failed");
+                HashProgram.WriteColored($"\n    {algorithms[i]}:", HashProgram.ErrorColor, " [×] Test failed");
             }
         }
 
         if (failed == 0)
         {
-            WriteColored("\nAll test successfully passed:", SuccessColor, $" [{passed}/{total}]");
+            HashProgram.WriteColored("\nAll test successfully passed:", HashProgram.SuccessColor, $" [{passed}/{total}]");
         }
         else
         {
-            WriteColored("\nSome tests are failed:", ErrorColor, $" [{failed}/{total}]");
+            HashProgram.WriteColored("\nSome tests are failed:", HashProgram.ErrorColor, $" [{failed}/{total}]");
         }
         
     }
     
     public static bool Test(Algorithm algorithm, string rawData, string hashSum)
     {
-        if (ComputeHash(algorithm, rawData, false) == hashSum)
-        {
-            return true;
-        }
-        return false;
-        
+        string hash = HashProgram.Compute(algorithm, rawData, false);
+
+        return hash == hashSum;
     }
 }

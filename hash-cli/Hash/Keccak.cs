@@ -244,9 +244,14 @@ public class Keccak
         return sb.ToString();
     }
 
-    public static string ComputeHash(Algorithm algorithm, string rawData)
+    public static string Compute(Algorithm algorithm, string rawData, bool isFile = false)
     {
-        List<byte> byteData = StringToByteList(rawData);
+        List<byte> byteData;
+        
+        if (isFile)
+            byteData = File.ReadAllBytes(rawData).ToList();
+        else
+            byteData = StringToByteList(rawData);
 
         return algorithm switch
         {
