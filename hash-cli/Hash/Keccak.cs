@@ -1,6 +1,6 @@
 ﻿namespace hash_cli.Hash;
 
-public class KeccakHash
+public class Keccak
 {
     private static byte _instanceNumber = 6;
     
@@ -96,7 +96,7 @@ public class KeccakHash
         return ((x << (n % w)) | (x >> (w - (n % w))));
     }
 
-    private static string Keccak(UInt16 rate, UInt16 capacity, List<Byte> message)
+    private static string ComputeKeccak(UInt16 rate, UInt16 capacity, List<Byte> message)
     {
         message.Add(0x01);
 
@@ -250,13 +250,13 @@ public class KeccakHash
 
         return algorithm switch
         {
-            Algorithm.Keccak224 => Keccak(_rateArray[(Byte)Sha3.Sha224], _capacityArray[(Byte)Sha3.Sha224], byteData)
+            Algorithm.Keccak224 => ComputeKeccak(_rateArray[(Byte)Sha3.Sha224], _capacityArray[(Byte)Sha3.Sha224], byteData)
                 .ToLower(),
-            Algorithm.Keccak256 => Keccak(_rateArray[(Byte)Sha3.Sha256], _capacityArray[(Byte)Sha3.Sha256], byteData)
+            Algorithm.Keccak256 => ComputeKeccak(_rateArray[(Byte)Sha3.Sha256], _capacityArray[(Byte)Sha3.Sha256], byteData)
                 .ToLower(),
-            Algorithm.Keccak384 => Keccak(_rateArray[(Byte)Sha3.Sha384], _capacityArray[(Byte)Sha3.Sha384], byteData)
+            Algorithm.Keccak384 => ComputeKeccak(_rateArray[(Byte)Sha3.Sha384], _capacityArray[(Byte)Sha3.Sha384], byteData)
                 .ToLower(),
-            Algorithm.Keccak512 => Keccak(_rateArray[(Byte)Sha3.Sha512], _capacityArray[(Byte)Sha3.Sha512], byteData)
+            Algorithm.Keccak512 => ComputeKeccak(_rateArray[(Byte)Sha3.Sha512], _capacityArray[(Byte)Sha3.Sha512], byteData)
                 .ToLower(),
             _ => "Unsupported hash algorithm"
         };

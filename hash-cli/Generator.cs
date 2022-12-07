@@ -6,7 +6,7 @@ namespace hash_cli;
 
 public class Generator
 {
-    public static string HashCompute(Algorithm algorithm, string rawData, bool isFile)
+    public static string ComputeHash(Algorithm algorithm, string rawData, bool isFile)
     {
         if (isFile)
         {
@@ -48,16 +48,16 @@ public class Generator
                     return Md5(rawData);
                 
                 case Algorithm.Keccak224:
-                    return KeccakHash.ComputeHash(Algorithm.Keccak224, rawData);
+                    return Keccak.ComputeHash(Algorithm.Keccak224, rawData);
                 
                 case Algorithm.Keccak256:
-                    return KeccakHash.ComputeHash(Algorithm.Keccak256, rawData);
+                    return Keccak.ComputeHash(Algorithm.Keccak256, rawData);
                 
                 case Algorithm.Keccak384:
-                    return KeccakHash.ComputeHash(Algorithm.Keccak384, rawData);
+                    return Keccak.ComputeHash(Algorithm.Keccak384, rawData);
                 
                 case Algorithm.Keccak512:
-                    return KeccakHash.ComputeHash(Algorithm.Keccak512, rawData);
+                    return Keccak.ComputeHash(Algorithm.Keccak512, rawData);
             }
         }
 
@@ -121,22 +121,22 @@ public class Generator
 
     static string Keccak224(string rawData)
     {
-        return KeccakHash.ComputeHash(Algorithm.Keccak224, rawData);
+        return Keccak.ComputeHash(Algorithm.Keccak224, rawData);
     }
     
     static string Keccak256(string rawData)
     {
-        return KeccakHash.ComputeHash(Algorithm.Keccak256, rawData);
+        return Keccak.ComputeHash(Algorithm.Keccak256, rawData);
     }
     
     static string Keccak384(string rawData)
     {
-        return KeccakHash.ComputeHash(Algorithm.Keccak384, rawData);
+        return Keccak.ComputeHash(Algorithm.Keccak384, rawData);
     }
     
     static string Keccak512(string rawData)
     {
-        return KeccakHash.ComputeHash(Algorithm.Keccak512, rawData);
+        return Keccak.ComputeHash(Algorithm.Keccak512, rawData);
     }
         
     static string FileSha1(string path)

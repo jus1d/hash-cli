@@ -52,7 +52,7 @@ namespace hash_cli
                                 {
                                     string path = args[2];
 
-                                    string hash = HashCompute(Sha1, path, true);
+                                    string hash = ComputeHash(Sha1, path, true);
                                     
                                     LogHash($"file:{path}", hashType, hash);
                                 }
@@ -64,7 +64,7 @@ namespace hash_cli
                             else
                             {
                                 {
-                                    string hash = HashCompute(Sha1, rawData, false);
+                                    string hash = ComputeHash(Sha1, rawData, false);
                                     
                                     LogHash(rawData, hashType, hash);
                                 }
@@ -80,7 +80,7 @@ namespace hash_cli
                                 {
                                     string path = args[2];
 
-                                    string hash = HashCompute(Sha256, path, true);
+                                    string hash = ComputeHash(Sha256, path, true);
 
                                     LogHash($"file:{path}", hashType, hash);
                                 }
@@ -93,7 +93,7 @@ namespace hash_cli
                             }
                             else
                             {
-                                string hash = HashCompute(Sha256, rawData, false);
+                                string hash = ComputeHash(Sha256, rawData, false);
                             
                                 LogHash(rawData, hashType, hash);
                             }
@@ -108,7 +108,7 @@ namespace hash_cli
                                 {
                                     string path = args[2];
 
-                                    string hash = HashCompute(Sha384, path, true);
+                                    string hash = ComputeHash(Sha384, path, true);
                                     
                                     LogHash($"file:{path}", hashType, hash);
                                 }
@@ -120,7 +120,7 @@ namespace hash_cli
                             else
                             {
                                 {
-                                    string hash = HashCompute(Sha384, rawData, false);
+                                    string hash = ComputeHash(Sha384, rawData, false);
                                     
                                     LogHash(rawData, hashType, hash);
                                 }
@@ -135,7 +135,7 @@ namespace hash_cli
                                 {
                                     string path = args[2];
 
-                                    string hash = HashCompute(Sha512, path, true);
+                                    string hash = ComputeHash(Sha512, path, true);
                                     
                                     LogHash($"file:{path}", hashType, hash);
                                 }
@@ -147,7 +147,7 @@ namespace hash_cli
                             else
                             {
                                 {
-                                    string hash = HashCompute(Sha512, rawData, false);
+                                    string hash = ComputeHash(Sha512, rawData, false);
                                     
                                     LogHash(rawData, hashType, hash);
                                 }
@@ -162,7 +162,7 @@ namespace hash_cli
                                 {
                                     string path = args[2];
 
-                                    string hash = HashCompute(Md5, path, true);
+                                    string hash = ComputeHash(Md5, path, true);
                                     
                                     LogHash($"file:{path}", hashType, hash);
                                 }
@@ -174,7 +174,7 @@ namespace hash_cli
                             else
                             {
                                 {
-                                    string hash = HashCompute(Md5, rawData, false);
+                                    string hash = ComputeHash(Md5, rawData, false);
                                     
                                     LogHash(rawData, hashType, hash);
                                 }
@@ -188,7 +188,7 @@ namespace hash_cli
                             else
                             {
                                 {
-                                    string hash = HashCompute(Keccak224, rawData, false);
+                                    string hash = ComputeHash(Keccak224, rawData, false);
 
                                     LogHash(rawData, hashType, hash);
                                 }
@@ -202,7 +202,7 @@ namespace hash_cli
                             else
                             {
                                 {
-                                    string hash = HashCompute(Keccak256, rawData, false);
+                                    string hash = ComputeHash(Keccak256, rawData, false);
                                     
                                     LogHash(rawData, hashType, hash);
                                 }
@@ -216,7 +216,7 @@ namespace hash_cli
                             else
                             {
                                 {
-                                    string hash = HashCompute(Keccak384, rawData, false);
+                                    string hash = ComputeHash(Keccak384, rawData, false);
                                     
                                     LogHash(rawData, hashType, hash);
                                 }
@@ -230,7 +230,7 @@ namespace hash_cli
                             else
                             {
                                 {
-                                    string hash = HashCompute(Keccak512, rawData, false);
+                                    string hash = ComputeHash(Keccak512, rawData, false);
                                     
                                     LogHash(rawData, hashType, hash);
                                 }

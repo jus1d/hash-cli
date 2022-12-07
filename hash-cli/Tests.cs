@@ -57,7 +57,7 @@ public class Tests
     
     public static bool Test(Algorithm algorithm, string rawData, string hashSum)
     {
-        if (HashCompute(algorithm, rawData, false) == hashSum)
+        if (ComputeHash(algorithm, rawData, false) == hashSum)
         {
             return true;
         }
