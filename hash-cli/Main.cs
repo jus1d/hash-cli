@@ -157,6 +157,6 @@ public class HashProgram
 
     public static void ErrorHandler(Exception e)
     {
-        WriteColored("Use ", FlagColor, "--help", " or ", FlagColor, "-h", " flags, to see usage list\n", ErrorColor, "Error: ", e.Message);
+        WriteColored("\nUse ", FlagColor, "--help", " or ", FlagColor, "-h", " flags, to see usage list\n", ErrorColor, "Error: ", e.Message);
     }
 }

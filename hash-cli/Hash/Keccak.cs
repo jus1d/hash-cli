@@ -101,7 +101,7 @@ public class Keccak
         message.Add(0x01);
 
         UInt16 min = (UInt16)((rate - 8) / 8);
-        UInt16 n = (UInt16)Math.Truncate((Double)(message.Count / min));
+        UInt16 n = (UInt16)Math.Truncate((Double)message.Count / min);
         UInt32 messageFullCount = 0;
         if (n < 2)
         {
@@ -122,7 +122,7 @@ public class Keccak
             delta--;
         }
 
-        if ((message.Count * 8 % rate) != (rate - 8))
+        if (message.Count * 8 % rate != rate - 8)
             throw (new Exception("Length was incorrect calculated"));
 
         message.Add(0x80);
