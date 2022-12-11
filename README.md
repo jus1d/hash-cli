@@ -2,6 +2,10 @@
 
 Hash CLI Tool is a terminal utility to fast hashing strings or files, checksums. 
 
+## Install:
+Run `hash-cli-setup.exe`, after that be sure to run hash-cli.exe from Administrator user.
+The utility is ready to use
+
 ## Quick usage:
 ### For strings:
 ```bash
