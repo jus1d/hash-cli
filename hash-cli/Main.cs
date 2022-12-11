@@ -1,4 +1,5 @@
-﻿using hash_cli.Hash;
+﻿using System.Net.Mime;
+using hash_cli.Hash;
 
 namespace hash_cli;
 
@@ -10,6 +11,19 @@ public class HashProgram
     
     static void Main(string[] args)
     {
+        string? pathEnv = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.Machine);
+        bool pathExist = pathEnv!.Contains(Environment.CurrentDirectory);
+
+        if (!pathExist)
+        {
+            WriteColored("Global variable ", FlagColor, "PATH", " isn't contains hash-cli path");
+            
+            string newPath = pathEnv + ";" + Environment.CurrentDirectory;
+            Environment.SetEnvironmentVariable("PATH",newPath, EnvironmentVariableTarget.Machine);
+            
+            WriteColored("Global variable ", FlagColor, "PATH", " successfully updated");
+        }
+        
         Start(args);
     }
 
