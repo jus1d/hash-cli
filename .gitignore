@@ -1,12 +1,12 @@
+# Binary files
 bin/
 obj/
+# Packages and Rider ignored files
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
-hash.txt
 .idea/
-.README.md.un~
-README.md~
-.LICENSE.un~
-LICENSE~
 hash-cli-setup.exe
+# Testing files
+test.txt
+test.sha256
