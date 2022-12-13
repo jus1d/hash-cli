@@ -1,5 +1,4 @@
-﻿using System.Net.Mime;
-using hash_cli.Hash;
+﻿using hash_cli.Hash;
 
 namespace hash_cli;
 
