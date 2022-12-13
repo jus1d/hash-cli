@@ -1,4 +1,5 @@
-﻿using hash_cli.Hash;
+﻿using System.Runtime.Intrinsics.Arm;
+using hash_cli.Hash;
 
 namespace hash_cli;
 
@@ -47,6 +48,58 @@ public class HashProgram
                     "\nUsage for hashing files: hash-cli [ hash-algorithm ] ", FlagColor,  "--file", " [ file-name ]\n" +
                     "\nFile-name parameter may be clear => will opens a window for selecting a file\n");
                 return;
+            }
+
+            if (args[0] == "--checksum" || args[0] == "-cs") // hash-cli --checksum sha256 [ path ] [ hash-path ]
+            {
+                string algorithmString = args[1];
+                Algorithm algorithm = Algorithm.Sha1;
+                string path = args[2];
+                string hashPath = args[3];
+                string computedHash = File.ReadAllText(hashPath);
+
+                switch (algorithmString)
+                {
+                    case "sha1":
+                        algorithm = Algorithm.Sha1;
+                        break;
+                    case "sha256":
+                        algorithm = Algorithm.Sha256;
+                        break;
+                    case "sha384":
+                        algorithm = Algorithm.Sha384;
+                        break;
+                    case "sha512":
+                        algorithm = Algorithm.Sha512;
+                        break;
+                    case "keccak224":
+                        algorithm = Algorithm.Keccak224;
+                        break;
+                    case "keccak256":
+                        algorithm = Algorithm.Keccak256;
+                        break;
+                    case "keccak384":
+                        algorithm = Algorithm.Keccak384;
+                        break;
+                    case "keccak512":
+                        algorithm = Algorithm.Keccak512;
+                        break;
+                    case "md5":
+                        algorithm = Algorithm.Md5;
+                        break;
+                }
+                
+                string hash = Compute(algorithm, path, true);
+                bool checksum = hash == computedHash;
+
+                if (checksum)
+                    WriteColored(SuccessColor, "\nChecksum is valid\n");
+                else
+                    WriteColored(ErrorColor, "\nChecksum is invalid\n");
+
+                LogHash(hashPath, algorithmString, hash);
+                WriteColored(FlagColor, "\nchecksum -> ", $"{computedHash}");
+
             }
 
             string hashType = args[0];
@@ -170,6 +223,6 @@ public class HashProgram
 
     public static void ErrorHandler(Exception e)
     {
-        WriteColored("\nUse ", FlagColor, "--help", " or ", FlagColor, "-h", " flags, to see usage list\n", ErrorColor, "Error: ", e.Message);
+        WriteColored("\nMissing argument: use ", FlagColor, "--help", " or ", FlagColor, "-h", " flags, to see usage list\n", ErrorColor, "Error: ", e.Message);
     }
 }
