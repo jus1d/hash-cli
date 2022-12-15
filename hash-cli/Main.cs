@@ -8,6 +8,7 @@ public class HashProgram
     public const ConsoleColor ErrorColor = ConsoleColor.DarkRed;
     public const ConsoleColor SuccessColor = ConsoleColor.Green;
     
+    [STAThread]
     static void Main(string[] args)
     {
         string? pathEnv = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.Machine);
@@ -32,7 +33,7 @@ public class HashProgram
         {
             if (args.Length == 0)
             {
-                WriteColored("Use ", FlagColor, "--help", " or ", FlagColor, "-h", " flags, to see usage list\n");
+                HelpHandler();
                 return;
             }
             if (args[0] == "--test" || args[0] == "-t")
@@ -42,16 +43,18 @@ public class HashProgram
             }
             if (args[0] == "--help" || args[0] == "-h")
             {
-                WriteColored("Usage: hash-cli [ hash-algorithm ] [ raw-data ]\n" +
-                                        "                                   ", FlagColor, "--file", " [ file_path ]\n" +
-                                        "                ", FlagColor, "--checksum", " [ hash-algorithm ] [ file-path ] [ file-hash-sum-path ]\n" + 
-                                        "                ", FlagColor, "--checksum", " [ hash-algorithm ] [ file-path ] ", FlagColor, "--hash", " [ hash-sum ]\n");
+                HelpHandler();
                 return;
             }
 
             if (args[0] == "--checksum" || args[0] == "-cs")
             {
                 string algorithmString = args[1];
+                if (algorithmString == "-h" || algorithmString == "--help")
+                {
+                    HelpHandler("checksum");
+                    return;
+                }
                 Algorithm algorithm = Algorithm.Sha1;
                 string path = args[2];
                 string hashPath = args[3];
@@ -239,5 +242,20 @@ public class HashProgram
     public static void ErrorHandler(Exception e)
     {
         WriteColored("\nMissing argument: use ", FlagColor, "--help", " or ", FlagColor, "-h", " flags, to see usage list\n", ErrorColor, "Error: ", e.Message);
+    }
+
+    public static void HelpHandler(string command = "")
+    {
+        if (command == "checksum")
+        {
+            WriteColored("\nUsage: hash-cli [ hash-algorithm ] [ file-path ] [ file-hash-sum-path ]\n\n    ", FlagColor, "or", "\n\nhash-cli [ hash-algorithm ] [ file-path ]", FlagColor, " --hash", " [ hash-sum ]\n\nExample: hash-cli crc32 ./example.md", FlagColor, " --hash", " 2a0d96ed");
+        }
+        else
+        {
+            WriteColored("\nUsage: hash-cli [ hash-algorithm ] [ raw-data ]\n" +
+                            "                                   ", FlagColor, "--file", " [ file_path ]\n" +
+                            "                ", FlagColor, "--checksum", " [ hash-algorithm ] [ file-path ] [ file-hash-sum-path ]\n" + 
+                            "                ", FlagColor, "--checksum", " [ hash-algorithm ] [ file-path ] ", FlagColor, "--hash", " [ hash-sum ]\n");
+        }
     }
 }
