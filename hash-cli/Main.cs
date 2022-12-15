@@ -45,7 +45,7 @@ public class HashProgram
                 WriteColored("Usage: hash-cli [ hash-algorithm ] [ raw-data ]\n" +
                                         "                                   ", FlagColor, "--file", " [ file_path ]\n" +
                                         "                ", FlagColor, "--checksum", " [ hash-algorithm ] [ file-path ] [ file-hash-sum-path ]\n" + 
-                                                                       "                ", FlagColor, "--checksum", " [ hash-algorithm ] [ file-path ] ", FlagColor, "--hash", " [ hash-sum ]\n");
+                                        "                ", FlagColor, "--checksum", " [ hash-algorithm ] [ file-path ] ", FlagColor, "--hash", " [ hash-sum ]\n");
                 return;
             }
 
