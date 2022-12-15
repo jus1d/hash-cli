@@ -1,5 +1,4 @@
-﻿using System.Runtime.Intrinsics.Arm;
-using hash_cli.Hash;
+﻿using hash_cli.Hash;
 
 namespace hash_cli;
 
@@ -43,20 +42,32 @@ public class HashProgram
             }
             if (args[0] == "--help" || args[0] == "-h")
             {
-                WriteColored("\nUsage: hash-cli [ hash-algorithm ] [ raw-data ]\n", FlagColor,
-                    "\n  or\n",
-                    "\nUsage for hashing files: hash-cli [ hash-algorithm ] ", FlagColor,  "--file", " [ file-name ]\n" +
-                    "\nFile-name parameter may be clear => will opens a window for selecting a file\n");
+                WriteColored("Usage: hash-cli [ hash-algorithm ] [ raw-data ]\n" +
+                                        "                                   ", FlagColor, "--file", " [ file_path ]\n" +
+                                        "                ", FlagColor, "--checksum", " [ hash-algorithm ] [ file-path ] [ file-hash-sum-path ]\n" + 
+                                                                       "                ", FlagColor, "--checksum", " [ hash-algorithm ] [ file-path ] ", FlagColor, "--hash", " [ hash-sum ]\n");
                 return;
             }
 
-            if (args[0] == "--checksum" || args[0] == "-cs") // hash-cli --checksum sha256 [ path ] [ hash-path ]
+            if (args[0] == "--checksum" || args[0] == "-cs")
             {
                 string algorithmString = args[1];
                 Algorithm algorithm = Algorithm.Sha1;
                 string path = args[2];
                 string hashPath = args[3];
-                string computedHash = File.ReadAllText(hashPath);
+
+                string computedHash;
+
+                if (hashPath == "--hash" || hashPath == "-h")
+                {
+                    computedHash = args[4];
+                    hashPath = computedHash.Substring(0, 2) + ".." + computedHash.Substring(computedHash.Length - 2, 2);
+                }
+                else
+                {
+                    computedHash = File.ReadAllText(hashPath);
+                }
+
 
                 switch (algorithmString)
                 {
@@ -93,12 +104,16 @@ public class HashProgram
                 bool checksum = hash == computedHash;
 
                 if (checksum)
-                    WriteColored(SuccessColor, "\nChecksum is valid\n");
+                {
+                    WriteColored(SuccessColor, "\nChecksum matches\n");
+                    LogHash(hashPath, algorithmString, hash);
+                }
                 else
-                    WriteColored(ErrorColor, "\nChecksum is invalid\n");
-
-                LogHash(hashPath, algorithmString, hash);
-                WriteColored(FlagColor, "\nchecksum -> ", $"{computedHash}");
+                {
+                    WriteColored(ErrorColor, "\nChecksum does not match\n");
+                    LogHash(hashPath, algorithmString, hash);
+                    WriteColored(FlagColor, "\nchecksum -> ", $"{computedHash}");
+                }
 
             }
 
