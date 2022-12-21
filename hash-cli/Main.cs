@@ -1,5 +1,6 @@
 ﻿using hash_cli.Hash;
 
+
 namespace hash_cli;
 
 public class HashProgram
@@ -11,7 +12,7 @@ public class HashProgram
     [STAThread]
     static void Main(string[] args)
     {
-        string? pathEnv = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.Machine);
+        /*string? pathEnv = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.Machine);
         bool pathExist = pathEnv!.Contains(Environment.CurrentDirectory);
 
         if (!pathExist)
@@ -24,7 +25,8 @@ public class HashProgram
             WriteColored("Global variable ", FlagColor, "PATH", " successfully updated");
         }
         
-        Start(args);
+        Start(args);*/
+        kaka.Main2(args);
     }
 
     static void Start(string[] args)

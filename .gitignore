@@ -7,6 +7,9 @@ riderModule.iml
 /_ReSharper.Caches/
 .idea/
 hash-cli-setup.exe
+.obsidian/
+hash-cli.sln.DotSettings.user
+hash-cli/kaka.cs
 # Testing files
 test.txt
 test.sha256
