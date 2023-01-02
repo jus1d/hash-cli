@@ -1,5 +1,5 @@
 # hash-cli-tool [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Compare%20the%20checksum%20and%20hash%20your%20data%20directly%20from%20Terminal%20in%20moments%20with%20hash-cli-tool:%20&url=https://github.com/jus1d/hash-cli&via=thejus1d&hashtags=hash,clitool,hashtool,hashcli)
-
+  
 Hash CLI Tool is a terminal utility to fast hashing strings or files, checksums. 
 
 ## Install:
